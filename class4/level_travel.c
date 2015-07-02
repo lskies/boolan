@@ -44,26 +44,3 @@ void printLevelOrder(BinaryTree *root) {
   }
 }
 
-
-// art of programming
-void printNodeByLevel(Node* root) {
-    if (root == NULL)
-        return;
-    vector<Node*> vec;
-    vec.push_back(root);
-    int cur = 0;
-    int last = 1;
-    while (cur< vec.size()) {
-        last = vec.size();
-        while (cur < last ) {
-            cout << vec[cur]->data;
-            if (vec[cur]->left)
-                vec.push_back(vec[cur]->left);
-            if (vec[cur]->right)
-                vec.push_back(vec[cur]->right);
-            cur++
-        }
-        cout<<endl; // cur == last means the level end!
-    }
-}
-

@@ -18,6 +18,9 @@ List<Node> shortestPath(Node root, Node a, Node b) {
     Stack<Node> path2 = new Stack();
     Node lca = lowestCommonAncestor(root, a, b);
 
+    // This is to handle the case where one of the nodes IS the LCA
+    Node r = lca.equals(a) ? a : (lca.equals(b) ? b : lca);
+
     shortestpath(r.left, a, path1);
     shortestpath(r.right, a, path2);
     path1.push(r);
