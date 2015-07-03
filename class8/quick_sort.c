@@ -1,24 +1,33 @@
-int partition( int array[], int left, int right ) {
-    int pivot = array[right];
-    while( left != right ){
-        while( array[left] < pivot && left < right)
-            left++;
-        if (left < right) {
-            swap( array[left], array[right--]);
-        }
-        while( array[right] > pivot && left < right)
-            right--;
-        if( left < right )
-            swap( array[left++], array[right]);
-    }
-    //array[left] = pivot;
-    return left;
+void change(int* a,int m,int n)
+{
+    int temp;
+    temp = a[m];
+    a[m] = a[n];
+    a[n] = temp;
 }
-void qSort( int array[], int left, int right ){
-    if( left >=right )
-        return;
-    int index = partition( array, left, right);
-    qSort(array, left, index - 1);
-    qSort(array, index + 1, right);
+int partition(int* arr,int left,int right)
+{
+    int pivot = arr[right];
+    int l = left;
+    int r = right-1;
+    while(true)
+    {
+        while(arr[l] < pivot){l++;};
+        while(arr[r] > pivot){r--;};
+        if(l>=r)
+            break;
+        change(arr,l,r);
+    }
+
+    change(arr,l,right);
+    return l;
 }
 
+void quicksort(int* arr,int left,int right )
+{
+    if(left>=right)
+        return;
+    int part = partition(arr,left,right);
+    quicksort(arr,left,part-1);
+    quicksort(arr,part+1,right);
+}
